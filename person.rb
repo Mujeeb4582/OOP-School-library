@@ -21,8 +21,3 @@ class Person
     of_age? || @parent_permission
   end
 end
-
-# person1 = Person.new(10, 'Jhon')
-# p person1.can_use_services?
-# puts person1.id
-# puts person1.age
