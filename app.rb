@@ -19,9 +19,9 @@ class App
       puts display_options
       puts '=' * 60
       print 'Your option: '
-      option = get_option
-      try = option === 'Invalid option' ? 'Invalid option, please type correct number!' : available_options(option)
-      puts try
+      option = user_option
+      puts option == 'Invalid option' ? 'Invalid option, please type correct number!' : available_options(option)
+      # puts try
     end
   end
 
@@ -36,9 +36,9 @@ class App
     7 - Exit'
   end
 
-  def get_option
+  def user_option
     user_choice = gets.chomp.to_i
-    user_choice > 0 && user_choice <= 7 ? user_choice : "Invalid option"
+    user_choice.positive? && user_choice <= 7 ? user_choice : 'Invalid option'
   end
 
   def available_options(user_choice)
@@ -63,35 +63,36 @@ class App
 
   # ========================== show list of books ================================
   def list_books(books)
-    if books.length === 0
+    if books.empty?
       puts 'No books found. Please add some books to the list.'
     else
       books.each_with_index do |book, index|
         puts "#{index}) Title: #{book.title}, Author: #{book.author}"
       end
     end
-    return
+    nil
   end
 
   # ========================= show list of people method =========================
   def list_people(people)
-    if people.length === 0
+    if people.empty?
       puts 'No people found. Please add some people to the list first.'
     else
-      people.each_with_index do |person,  index|
+      people.each_with_index do |person, index|
         puts "#{index}) [#{person.class}] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
       end
     end
-    return
+    nil
   end
 
   # ========================= Create a person method ==============================
   def create_person
-    print "Do you want to create a student (1) or a teacher (2)? [Input the number]: "
+    print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     select_person = gets.chomp.to_i
-    if select_person == 1
+    case select_person
+    when 1
       create_student
-    elsif select_person == 2
+    when 2
       create_teacher
     else
       puts "\n\n******** Invalid input, please try again!!! ************ \n\n"
@@ -137,7 +138,7 @@ class App
   # ========================= Create a rental method =============================
   def create_rental(people, books)
     if people.empty? || books.empty?
-      puts "list are empty"
+      puts 'list are empty'
     else
       puts 'Select a book from the following list by number'
       list_books(@books)
@@ -155,7 +156,7 @@ class App
       @rentals << rental
       puts 'Rental created successfully'
     end
-    return
+    nil
   end
 
   # ========================== show list of rentals ================================
@@ -168,13 +169,9 @@ class App
       rentals.each do |rental|
         if rental.person.id == person_id
           puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
-        else
-          puts "No record found."
-          return
         end
       end
     end
-    return
+    nil
   end
-
 end
