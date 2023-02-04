@@ -120,7 +120,7 @@ class App
       @rentals.each do |rental|
         if rental.person.id == person_id
           puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
-          binding.pry
+          # binding.pry
         end
       end
     end
