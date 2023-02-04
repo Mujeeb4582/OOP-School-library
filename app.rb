@@ -44,17 +44,17 @@ class App
   def available_options(user_choice)
     case user_choice
     when 1
-      list_books(@books)
+      list_books
     when 2
-      list_people(@people)
+      list_people
     when 3
       create_person
     when 4
       create_book
     when 5
-      create_rental(@people, @books)
+      create_rental
     when 6
-      list_rentals(@rentals)
+      list_rentals
     else
       puts 'Thank you for using this app!'
       exit
@@ -62,11 +62,11 @@ class App
   end
 
   # ========================== show list of books ================================
-  def list_books(books)
-    if books.empty?
+  def list_books
+    if @books.empty?
       puts 'No books found. Please add some books to the list.'
     else
-      books.each_with_index do |book, index|
+      @books.each_with_index do |book, index|
         puts "#{index}) Title: #{book.title}, Author: #{book.author}"
       end
     end
@@ -74,11 +74,11 @@ class App
   end
 
   # ========================= show list of people method =========================
-  def list_people(people)
-    if people.empty?
+  def list_people
+    if @people.empty?
       puts 'No people found. Please add some people to the list first.'
     else
-      people.each_with_index do |person, index|
+      @people.each_with_index do |person, index|
         puts "#{index}) [#{person.class}] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
       end
     end
@@ -136,17 +136,17 @@ class App
   end
 
   # ========================= Create a rental method =============================
-  def create_rental(people, books)
-    if people.empty? || books.empty?
+  def create_rental
+    if @people.empty? || @books.empty?
       puts 'list are empty'
     else
       puts 'Select a book from the following list by number'
-      list_books(@books)
+      list_books
       book_number = gets.chomp.to_i
       book_name = @books[book_number]
 
       puts 'Select a person from the following list by number (not id)'
-      list_people(@people)
+      list_people
       person_number = gets.chomp.to_i
       person_name = @people[person_number]
 
@@ -160,13 +160,13 @@ class App
   end
 
   # ========================== show list of rentals ================================
-  def list_rentals(rentals)
-    if rentals.empty?
+  def list_rentals
+    if @rentals.empty?
       puts 'No rentals found, please add some rentals to the list first.'
     else
       print 'ID of person: '
       person_id = gets.chomp.to_i
-      rentals.each do |rental|
+      @rentals.each do |rental|
         if rental.person.id == person_id
           puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
         end
