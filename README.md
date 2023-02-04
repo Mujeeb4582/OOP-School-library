@@ -124,8 +124,7 @@ Install this project with:
 To run the project, execute the following command:
 
 ```sh
-  ruby student.rb
-  ruby teacher.rb
+  ruby main.rb
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
