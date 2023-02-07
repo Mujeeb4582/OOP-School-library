@@ -14,7 +14,7 @@ class OptionSelector
     when 6
       library.list_rentals
     else
-      puts 'Thank you for using this app!\n'
+      puts "Thank you for using this app!\n\n"
       exit
     end
   end
