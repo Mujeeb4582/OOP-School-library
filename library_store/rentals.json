@@ -1,0 +1,37 @@
+[
+  {
+    "date": "2023/02/08",
+    "person_id": 738,
+    "book_title": "The Power of Habit",
+    "book_author": "Charles Duhigg",
+    "class": "Rental"
+  },
+  {
+    "date": "2023/02/06",
+    "person_id": 135,
+    "book_title": "The Power of Habit",
+    "book_author": "Charles Duhigg",
+    "class": "Rental"
+  },
+  {
+    "date": "2023/02/05",
+    "person_id": 608,
+    "book_title": "Resisting Happiness",
+    "book_author": "Matthew Kelly",
+    "class": "Rental"
+  },
+  {
+    "date": "2023/02/02",
+    "person_id": 608,
+    "book_title": "The Forty Rules of Love",
+    "book_author": "Elif Shafak",
+    "class": "Rental"
+  },
+  {
+    "date": "2022/10/20",
+    "person_id": 738,
+    "book_title": "The Forty Rules of Love",
+    "book_author": "Elif Shafak",
+    "class": "Rental"
+  }
+]
