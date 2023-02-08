@@ -1,4 +1,5 @@
 #! /usr/bin/env ruby
+require 'json'
 require './option_selector'
 require './app'
 
