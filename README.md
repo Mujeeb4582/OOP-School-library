@@ -139,6 +139,12 @@ To run the project, execute the following command:
 - Twitter: [@twitterhandle](https://twitter.com/Mujeebu93992980)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/rahman-mujeeb/)
 
+👤 **Ben Salès**
+
+- GitHub: [@adebsa2401](https://github.com/adebsa2401)
+- Twitter: [@Adebsa3](https://twitter.com/adebsa3)
+- LinkedIn: [adebsa](https://linkedin.com/in/adebsa)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
