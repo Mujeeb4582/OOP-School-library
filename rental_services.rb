@@ -2,13 +2,11 @@ class RentalService
   def initialize(people, books)
     begin
       file_path = File.join('library_store', 'rentals.json')
-      if !File.exist?(file_path)
-        File.open(file_path, 'w') { |file| file.write("[]")}
-      end
+      File.write(file_path, '[]') unless File.exist?(file_path)
       file_content = File.read(file_path)
       @rentals = file_content.empty? ? [] : JSON.parse(file_content)
-    rescue => exception
-      puts "ERROR: #{exception.message} while loading rentals details from file #{file_path}"
+    rescue StandardError => e
+      puts "ERROR: #{e.message} while loading rentals details from file #{file_path}"
       @rentals = []
     end
     @people = people
