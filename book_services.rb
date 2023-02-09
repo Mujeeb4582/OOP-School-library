@@ -4,11 +4,17 @@ class BookService
   attr_accessor :books
 
   def initialize
-    @books = if File.read(File.join('library_store', 'books.json')).empty?
-               []
-             else
-               JSON.parse(File.read(File.join('library_store', 'books.json')))
-             end
+    begin
+      file_path = File.join('library_store', 'books.json')
+      if !File.exist?(file_path)
+        File.open(file_path, 'w') { |file| file.write("[]") }
+      end
+      file_content = File.read(file_path)
+      @books = file_content.empty? ? [] : JSON.parse(file_content)
+    rescue => e
+      puts "Error: #{e.message} while loading books from file #{file_path}"
+      @books = []
+    end
   end
 
   def create

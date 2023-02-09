@@ -4,11 +4,17 @@ class PersonService
   attr_accessor :people
 
   def initialize
-    @people = if File.read(File.join('library_store', 'persons.json')).empty?
-                []
-              else
-                JSON.parse(File.read(File.join('library_store', 'persons.json')))
-              end
+    begin
+      file_path = File.join('library_store', 'persons.json')
+      if !File.exist?(file_path)
+        File.open(file_path, 'w') { |file| file.write("[]") }
+      end
+      file_content = File.read(file_path)
+      @people = file_content.empty? ? [] : JSON.parse(file_content)
+    rescue => exception
+      puts "ERROR: #{exception.message} while loading persons from file #{file_path}"
+      @people = []
+    end
   end
 
   def create_person
