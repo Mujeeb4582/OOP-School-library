@@ -4,6 +4,12 @@ class PersonService
   attr_accessor :people
 
   def initialize
+    file_path = File.join('library_store', 'persons.json')
+    File.write(file_path, '[]') unless File.exist?(file_path)
+    file_content = File.read(file_path)
+    @people = file_content.empty? ? [] : JSON.parse(file_content)
+  rescue StandardError => e
+    puts "ERROR: #{e.message} while loading persons from file #{file_path}"
     @people = []
   end
 
@@ -27,9 +33,19 @@ class PersonService
     print 'Name: '
     student_name = gets.chomp
     print 'Has parent permission? [Y/N]: '
-    parent_permission = gets.chomp
+    parent_permission = gets.chomp.upcase
+    case parent_permission
+    when 'Y'
+      parent_permission = true
+    when 'N'
+      parent_permission = false
+    else
+      puts "That is not a valid input. Please try again!!!.\n\n"
+      create_student
+    end
     student = Student.new(student_age, student_name, parent_permission: parent_permission)
-    @people << student
+    @people << student.to_json
+    write_to_file
     puts 'Person created successfully'
   end
 
@@ -41,7 +57,8 @@ class PersonService
     print 'Specialization: '
     teacher_specialization = gets.chomp
     teacher = Teacher.new(teacher_specialization, teacher_age, teacher_name)
-    @people << teacher
+    @people << teacher.to_json
+    write_to_file
     puts 'Person created successfully'
   end
 
@@ -50,9 +67,14 @@ class PersonService
       puts 'No people found. Please add some people to the list first.'
     else
       @people.each_with_index do |person, index|
-        puts "#{index}) [#{person.class}] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
+        puts "#{index}) [#{person['class']}] ID: #{person['id']}, Name: #{person['name']}, Age: #{person['age']}"
       end
     end
     nil
+  end
+
+  def write_to_file
+    json_data = JSON.pretty_generate(@people)
+    File.write(File.join('library_store', 'persons.json'), json_data)
   end
 end

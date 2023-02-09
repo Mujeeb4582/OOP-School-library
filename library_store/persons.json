@@ -1,0 +1,26 @@
+[
+  {
+    "id": 738,
+    "name": "Mujeeb ur Rahman",
+    "age": 24,
+    "classroom": null,
+    "parent_permission": true,
+    "class": "Student"
+  },
+  {
+    "id": 135,
+    "name": "Ben",
+    "age": 25,
+    "classroom": null,
+    "parent_permission": true,
+    "class": "Student"
+  },
+  {
+    "id": 608,
+    "name": "Ariel",
+    "age": 40,
+    "specialization": "Software Engineer",
+    "parent_permission": true,
+    "class": "Teacher"
+  }
+]
